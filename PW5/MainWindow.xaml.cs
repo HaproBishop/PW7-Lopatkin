@@ -14,10 +14,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LibPair;
 /// <summary>
-/// Практическая работа №6. Задание 8. 
+/// Практическая работа №7. Задание 8. 
 /// Использовать класс Pair (пара четных чисел). 
-/// Разработать операцию инкремента - (a, b) = (a + b, b). 
-/// Разработать операцию для вычисления произведения 2-х пар чисел - (a, b) * (c, d) = (a * c, b * d)"
+/// Определить производный класс Rectangle(прямоугольник) с характеристиками стороны прямоугольника. 
+/// Определить методы вычисления периметра и площади прямоугольника.
 /// </summary>
 namespace PW5
 {
@@ -30,7 +30,7 @@ namespace PW5
         {
             InitializeComponent();
         }
-
+        LibPair.Rectangle myrect = new LibPair.Rectangle();
         private void Support_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Программа имеет следующие особенности:\n1) Необходимо вводить только четные числа для вычисления.\n2) Максимальное число для ввода в полях - пятизначное.", "Справка", MessageBoxButton.OK, MessageBoxImage.Information);            
@@ -38,7 +38,7 @@ namespace PW5
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void AboutProgram_Click(object sender, RoutedEventArgs e)
@@ -46,7 +46,11 @@ namespace PW5
             MessageBox.Show("Практическая работа №7. Задание 8. Использовать класс Pair (пара четных чисел). Определить производный класс Rectangle(прямоугольник) с характеристиками стороны прямоугольника. Определить методы вычисления периметра и площади прямоугольника.", "О программе", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
-
+        /// <summary>
+        /// Используется для очистки строк с результатами при изменении начальных значений
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FirstValue_TextChanged(object sender, TextChangedEventArgs e)
         {
             FirstResult.Clear();
@@ -59,27 +63,12 @@ namespace PW5
             bool ProveValue2 = int.TryParse(SecondValue.Text, out int value2);
             if (ProveValue1 == true && ProveValue2 == true)
             {
-                LibPair.Rectangle myrect = new LibPair.Rectangle(value1, value2);
-                myrect.FindSquareAndPerimeter();
-                if (myrect.Result != null)
-                {
-                    FirstResult.Text = myrect.Result[0].ToString();
-                    SecondResult.Text = myrect.Result[1].ToString();
-                }
-                else MessageForUser(false);
+                myrect.AddValue(value1, value2);
+                myrect = myrect.FindSquareAndPerimeter();
+                FirstResult.Text = myrect.Value1.ToString();
+                SecondResult.Text = myrect.Value2.ToString();                                
             }
-            else MessageForUser(true);
-        }/// <summary>
-        /// Используется для уведомления пользователя о конкретных ошибках, 
-        /// вызванных неправильным общением с программой
-        /// </summary>
-        /// <param name="isemptystring">isemptystring - значение пустой строки, true - пустая строка, false - не пустая строка</param>
-        public static void MessageForUser(bool isemptystring)
-        {
-            if(isemptystring == true)
-                MessageBox.Show("У вас некорректно введены значения для проведения произведения! Подробности об особенностях работы программы написаны в справке!", "ОШИБКА!", MessageBoxButton.OK, MessageBoxImage.Error);
-            else 
-                MessageBox.Show("У вас введены нечетные(ое) числа(о)! Пожалуйства, введите значения в соответствии с требованиями!", "ОШИБКА!", MessageBoxButton.OK, MessageBoxImage.Error);
+            else MessageBox.Show(Pair.InfoUser, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
