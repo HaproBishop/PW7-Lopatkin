@@ -8,12 +8,6 @@ namespace LibPair
 {
     public class Rectangle:Pair
     {
-        public Rectangle() { }
-        public Rectangle(int value1, int value2)
-        {
-            Value1 = value1;
-            Value2 = value2;
-        }
         /// <summary>
         /// Находит площадь и периметр
         /// </summary>
