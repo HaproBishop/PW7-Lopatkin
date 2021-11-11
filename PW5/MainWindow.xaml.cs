@@ -31,6 +31,7 @@ namespace PW5
             InitializeComponent();
         }
         LibPair.Rectangle myrect = new LibPair.Rectangle();
+        Pair calculatedpair;
         private void Support_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Программа имеет следующие особенности:\n1) Необходимо вводить только четные числа для вычисления.\n2) Максимальное число для ввода в полях - пятизначное.", "Справка", MessageBoxButton.OK, MessageBoxImage.Information);            
@@ -64,9 +65,9 @@ namespace PW5
             if (ProveValue1 == true && ProveValue2 == true)
             {
                 myrect.AddValue(value1, value2);
-                myrect = myrect.FindSquareAndPerimeter();
-                FirstResult.Text = myrect.Value1.ToString();
-                SecondResult.Text = myrect.Value2.ToString();                                
+                calculatedpair = myrect.FindSquareAndPerimeter();
+                FirstResult.Text = calculatedpair.Value1.ToString();
+                SecondResult.Text = calculatedpair.Value2.ToString();                                
             }
             else MessageBox.Show(Pair.InfoUser, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
         }

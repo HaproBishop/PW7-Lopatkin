@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace LibPair
 {
-    public class Rectangle:Pair
+    public class Rectangle : Pair
     {
         /// <summary>
         /// Находит площадь и периметр
         /// </summary>
         /// <returns>Новый объект с результатами</returns>
-        public Rectangle FindSquareAndPerimeter()
+        public Pair FindSquareAndPerimeter()
         {
-            return new Rectangle() { Value1 = _value1 * _value2, Value2 = _value1 * 2 + _value2 * 2 };
+            return new Pair() { Value1 = _value1 * _value2, Value2 = _value1 * 2 + _value2 * 2 };
         }
     }
 }
